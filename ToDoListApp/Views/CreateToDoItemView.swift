@@ -26,9 +26,19 @@ struct CreateToDoItemView: View {
                     .datePickerStyle(GraphicalDatePickerStyle())
                 
                 MyButtonView(title: "Save", backgroundColor: .blue) {
-                    viewModel.save()
-                    showCreateToDoView = false
+                    if viewModel.validate() {
+                        viewModel.save()
+                        showCreateToDoView = false
+                    } else {
+                        viewModel.showAlert = true
+                    }
                 }
+            }
+            .alert(isPresented: $viewModel.showAlert) {
+                Alert(
+                    title: Text("Error"),
+                    message: Text("Please fill all fields!")
+                )
             }
         }
     }

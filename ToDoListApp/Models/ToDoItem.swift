@@ -6,3 +6,15 @@
 //
 
 import Foundation
+
+struct ToDoItemModel : Codable, Identifiable {
+    let id: String
+    var title: String
+    var dueDate: TimeInterval
+    let createAt: TimeInterval
+    var isDone: Bool
+    
+    mutating func setDone(_ state: Bool) -> Void {
+        isDone = state
+    }
+}

@@ -8,19 +8,50 @@
 import SwiftUI
 
 struct RegisterView: View {
+    
+    @StateObject var viewModel = RegisterViewViewModel()
+    
     var body: some View {
-        NavigationView {
-            VStack {
-                // header
-                AuthHeaderView(
-                    title: "To Do List",
-                    subTitle: "Regiser",
-                    backgroundColor: Color.orange,
-                    degreeAngle: -15)
+        VStack {
+            // header
+            AuthHeaderView(
+                title: "To Do List",
+                subTitle: "Regiser",
+                backgroundColor: Color.orange,
+                degreeAngle: -10)
+            
+            // form
+            Form {
+                TextField("Email Address",
+                          text: $viewModel.emailText)
+                    .textFieldStyle(DefaultTextFieldStyle())
+                    .autocapitalization(.none)
+                    .autocorrectionDisabled()
                 
-                //
-                Spacer()
+                SecureField("Password",
+                            text: $viewModel.passwordText)
+                        .textFieldStyle(DefaultTextFieldStyle())
+                
+                SecureField("Validation password",
+                            text: $viewModel.validatePasswordText)
+                        .textFieldStyle(DefaultTextFieldStyle())
+                
+                if !viewModel.emailText.isEmpty {
+                    Text(viewModel.errorMessage)
+                        .foregroundColor(.red)
+                        .font(.system(size: 12))
+                }
+                
+                MyButtonView(
+                    title: "Register",
+                    backgroundColor: .orange
+                ) {
+                    viewModel.register()
+                }
             }
+            
+            //
+            Spacer()
         }
     }
 }

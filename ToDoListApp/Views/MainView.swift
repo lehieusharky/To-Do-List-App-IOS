@@ -13,7 +13,7 @@ struct MainView: View {
     
     var body: some View {
         if viewModel.isSignIn(), !viewModel.currentUserId.isEmpty {
-            ToDoListView()
+            DashboardView(userID: viewModel.currentUserId)
         } else {
             LoginView()
         }

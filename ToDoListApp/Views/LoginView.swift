@@ -22,28 +22,7 @@ struct LoginView: View {
                     degreeAngle: 15)
                     
                 // form
-                Form {
-                    TextField("Email Address", text: $viewModel.emailText)
-                        .textFieldStyle(DefaultTextFieldStyle())
-                        .autocapitalization(.none)
-                    
-                    SecureField("Password", text: $viewModel.passwordText)
-                            .textFieldStyle(DefaultTextFieldStyle())
-                    
-                    // error message when validate
-                    if !viewModel.errorMessage.isEmpty {
-                        Text(viewModel.errorMessage)
-                            .foregroundColor(.red)
-                            .font(.system(size: 12))
-                    }
-                    
-                    MyButtonView(
-                        title: "Login",
-                        backgroundColor: .blue
-                    ) {
-                        viewModel.login()
-                    }
-                }
+                form
                 
                 // bottom action
                 VStack {
@@ -54,6 +33,31 @@ struct LoginView: View {
                 }
                 .padding(.bottom, 50)
                 Spacer()
+            }
+        }
+    }
+    
+    private var form : some View {
+        Form {
+            TextField("Email Address", text: $viewModel.emailText)
+                .textFieldStyle(DefaultTextFieldStyle())
+                .autocapitalization(.none)
+            
+            SecureField("Password", text: $viewModel.passwordText)
+                    .textFieldStyle(DefaultTextFieldStyle())
+            
+            // error message when validate
+            if !viewModel.errorMessage.isEmpty {
+                Text(viewModel.errorMessage)
+                    .foregroundColor(.red)
+                    .font(.system(size: 12))
+            }
+            
+            MyButtonView(
+                title: "Login",
+                backgroundColor: .blue
+            ) {
+                viewModel.login()
             }
         }
     }

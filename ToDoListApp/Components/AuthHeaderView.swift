@@ -30,11 +30,11 @@ struct AuthHeaderView: View {
                     .font(.system(size: 30))
                     .bold()
             }
-            .padding(.top, 40)
+            .padding(.top, 60)
               
         }
-        .frame(width: UIScreen.main.bounds.width * 3, height: 250)
-        .offset(y: -100)
+        .frame(width: UIScreen.main.bounds.width * 3, height: 320)
+        .offset(y: -130)
     }
 }
 

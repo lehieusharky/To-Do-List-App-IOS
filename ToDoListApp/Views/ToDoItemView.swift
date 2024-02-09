@@ -12,6 +12,10 @@ struct ToDoItemView: View {
     
     let item: ToDoItemModel
     
+    init(item: ToDoItemModel) {
+        self.item = item
+    }
+    
     var body: some View {
         HStack {
             VStack(alignment: .leading) {
@@ -27,9 +31,10 @@ struct ToDoItemView: View {
             Spacer()
             
             Button {
-                viewModel.toggleIsDone(status: !item.isDone)
+                viewModel.toggleIsDone(item: self.item)
             } label: {
                 Image(systemName: item.isDone ? "checkmark.circle.fill" : "circle")
+                    .foregroundColor(.blue)
             }
         }
         
